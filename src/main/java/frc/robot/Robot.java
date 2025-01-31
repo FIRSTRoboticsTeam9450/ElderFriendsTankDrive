@@ -87,8 +87,8 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    subsystem.setMotorSpeed(controller.getLeftY(), true);
-    subsystem.setMotorSpeed(controller.getRightY(), false);
+    subsystem.setMotorSpeed(controller.getRightY() / 3, controller.getLeftY() / 3, true);
+
   }
 
   @Override

@@ -96,32 +96,23 @@ private static TankDriveSubsystem tankDriveSubsystem = new TankDriveSubsystem();
    * @param isLeftSide Used to choose which side of the robot you want to move. Name's self explanatory.
    * 
   */
-  public void setMotorSpeed(double speed, boolean isLeftSide) {
-    double clampedSpeed = speed;
 
-    System.out.println(speed);
+  private void setLeftMotors(double speed) {
+    LMotor1.set(speed);
+    LMotor2.set(speed);
 
-    // debugging
-    if (clampedSpeed > 1 || clampedSpeed < -1) {
-      System.out.println("WHEEL SPEED OUT OF BOUNDS- CURRENT SPEED: " + clampedSpeed);
+  }
 
-    }
-    /*clamps speed so if they're out of range [-1, 1] it doesn't break smth */
-    clampedSpeed = MathUtil.clamp(clampedSpeed, -speedLimit, speedLimit);
-    
+  private void setRightMotors(double speed) {
+    RMotor1.set(speed);
+    RMotor2.set(speed);
+
+  }
+
+  public void setMotorSpeed(double leftSpeed, double rightSpeed, boolean isLeftSide) {
     /* sets speed of left/right side motors, depending on which joystick's pushed */
-    System.out.println(speed);
-
-    /* sets motors' speeds  */
-    if (isLeftSide) {
-      LMotor1.set(clampedSpeed);
-      LMotor2.set(clampedSpeed);
-
-    } else {
-      RMotor1.set(clampedSpeed);
-      RMotor2.set(clampedSpeed);
-    }
-    
+    setLeftMotors(leftSpeed);
+    setRightMotors(rightSpeed);    
   }
 
   @Override
